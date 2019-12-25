@@ -1,0 +1,18 @@
+.Menu {
+    background-color: rgb(251, 186, 60);
+    width: 70px;
+    float: left;
+    height: 100%;
+    border: 0.5px solid rgb(128, 128, 128);
+    text-align: center;
+}
+
+.ci {
+    width: 60px;
+}
+
+.bottom-ci {
+    position: absolute;
+    left: 5px;
+    bottom: 10px;
+}

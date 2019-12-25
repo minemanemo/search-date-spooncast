@@ -1,0 +1,27 @@
+.LatestPost {
+    margin: 0 20px;
+    padding: 5px 0;
+}
+
+.LatestPost .title {
+    font-size: 13px;
+    height: 32px;
+    border-bottom: 0.5px solid rgb(128, 128, 128)
+}
+
+.LatestPost .title svg {
+    margin-right: 7px;
+}
+
+.LatestPost ul { margin: 10px 0; padding-left: 0; }
+.LatestPost ul li { 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.LatestPost ul li a {
+    font-size: 12px;
+}
+.LatestPost ul li a:link { color: black; text-decoration: none; }
+.LatestPost ul li a:visited { color: black; text-decoration: none; }
+.LatestPost ul li a:hover { color: black; text-decoration: none; }
