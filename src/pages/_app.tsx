@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -21,10 +22,22 @@ import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = React.useState('recents');
+  const router = useRouter();
+
+  const path = useMemo(() => {
+    if (router.pathname === '/') return 'home';
+
+    const [, pathValue] = router.pathname.split('/');
+    return pathValue;
+  }, [router.pathname]);
+  console.log('🚀 ~ file: _app.tsx ~ line 33 ~ path ~ path', path);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    if (newValue === 'home') {
+      router.push('/');
+    } else {
+      router.push(`/${newValue}`);
+    }
   };
 
   return (
@@ -61,7 +74,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
         elevation={3}
       >
-        <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigation value={path} onChange={handleChange}>
           <BottomNavigationAction
             label="Home"
             value="home"
@@ -69,7 +82,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
           <BottomNavigationAction
             label="Search"
-            value="Search"
+            value="search"
             icon={<SearchIcon />}
           />
           <BottomNavigationAction

@@ -9,17 +9,12 @@ import Chip from '@mui/material/Chip';
 import { Wrapper } from '@components/StyledComponent';
 import SearchBox from '@components/SearchBox';
 import SearchResult, { initSearchResultData } from '@components/SearchResult';
-import BlogPostTimeline, { BlogPostData } from '@components/BlogPostTimeline';
+import { BlogPostData } from '@components/BlogPostTimeline';
 
-const Home: NextPage = () => {
+const Search: NextPage = () => {
   const [keyword, setKeyword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [postLoading, setPostLoading] = useState(false);
   const [searchResult, setSearchResult] = useState(initSearchResultData);
-  const [blogPost, setBlogPost] = useState<{
-    minemanemo: BlogPostData[];
-    bingsubat: BlogPostData[];
-  }>({ minemanemo: [], bingsubat: [] });
 
   const requestSearchAPI = async (keyword: string) => {
     const url = `/api/spoon/searchDateJoin?keyword=${keyword}`;
@@ -43,27 +38,6 @@ const Home: NextPage = () => {
     }
   };
 
-  const requestPostAPI = async (
-    blogname: 'bingsubat' | 'minemanemo'
-  ): Promise<BlogPostData[]> => {
-    const url = `/api/tistory/${blogname}`;
-
-    try {
-      setPostLoading(true);
-      const { data } = await axios.get(url);
-      return data.results.posts.map((d: any) => ({
-        id: d.id,
-        postUrl: d.postUrl,
-        title: d.title,
-      }));
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setPostLoading(false);
-    }
-    return [];
-  };
-
   function handleChangeKeyword(e: React.ChangeEvent<HTMLInputElement>) {
     setKeyword(e.currentTarget.value);
   }
@@ -73,17 +47,6 @@ const Home: NextPage = () => {
       requestSearchAPI(keyword);
     }
   }
-
-  useEffect(() => {
-    const requestPostAPIS = async () => {
-      const bingsubat = await requestPostAPI('bingsubat');
-      const minemanemo = await requestPostAPI('minemanemo');
-
-      setBlogPost({ bingsubat, minemanemo });
-    };
-
-    requestPostAPIS();
-  }, []);
 
   return (
     <Wrapper>
@@ -106,22 +69,8 @@ const Home: NextPage = () => {
 
         <SearchResult data={searchResult} />
       </Box>
-
-      <Box style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-        <BlogPostTimeline
-          title="빙수밭 블로그 최신 글"
-          loading={postLoading}
-          data={blogPost.bingsubat}
-        />
-
-        <BlogPostTimeline
-          title="미네마네모 블로그 최신 글"
-          loading={postLoading}
-          data={blogPost.minemanemo}
-        />
-      </Box>
     </Wrapper>
   );
 };
 
-export default Home;
+export default Search;
