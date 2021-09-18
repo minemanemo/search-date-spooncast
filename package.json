@@ -1,45 +1,22 @@
 {
-  "name": "search-date",
+  "name": "next_ex",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@expo/vector-icons": "^10.0.6",
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-regular-svg-icons": "^5.12.0",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
-    "@material-ui/core": "^4.8.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.0",
-    "express": "^4.17.1",
-    "native-base": "^2.13.8",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-loading": "^2.0.3",
-    "react-navigation": "^4.0.10",
-    "react-scripts": "3.3.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/react": "17.0.21",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "typescript": "4.4.3"
   }
 }
