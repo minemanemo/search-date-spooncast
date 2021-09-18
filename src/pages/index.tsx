@@ -197,7 +197,7 @@ const Home: NextPage = () => {
 
       <Box sx={{ flexGrow: 1 }} />
 
-      <Box style={{ display: 'flex', gap: 30 }}>
+      <Box style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
         <Box
           style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}
         >
