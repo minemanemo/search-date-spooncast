@@ -76,7 +76,7 @@ const Home: NextPage = () => {
   }>({ minemanemo: [], bingsubat: [] });
 
   const requestSearchAPI = async (keyword: string) => {
-    const url = `http://bingsubat.iptime.org:8099/spoon/searchDateJoin?keyword=${keyword}`;
+    const url = `/api/spoon/searchDateJoin?keyword=${keyword}`;
 
     try {
       setLoading(true);
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
   const requestPostAPI = async (
     blogname: 'bingsubat' | 'minemanemo'
   ): Promise<Data[]> => {
-    const url = `http://bingsubat.iptime.org:8099/tistory/${blogname}`;
+    const url = `/api/tistory/${blogname}`;
 
     try {
       setPostLoading(true);
