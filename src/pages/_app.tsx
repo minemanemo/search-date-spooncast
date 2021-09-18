@@ -7,11 +7,26 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Paper from '@mui/material/Paper';
 
-import '../styles/globals.css';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import StarIcon from '@mui/icons-material/Star';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+
 import type { AppProps } from 'next/app';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [value, setValue] = React.useState('recents');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
     <div>
       <Head>
@@ -20,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ backgroundColor: '#fbba3c' }}>
+        <AppBar position="fixed" style={{ backgroundColor: '#fbba3c' }}>
           <Toolbar variant="dense">
             <IconButton
               edge="start"
@@ -38,7 +53,42 @@ function MyApp({ Component, pageProps }: AppProps) {
           </Toolbar>
         </AppBar>
       </Box>
-      <Component {...pageProps} />
+      <div style={{ marginTop: 40 }}>
+        <Component {...pageProps} />
+      </div>
+
+      <Paper
+        sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+        elevation={3}
+      >
+        <BottomNavigation value={value} onChange={handleChange}>
+          <BottomNavigationAction
+            label="Home"
+            value="home"
+            icon={<HomeIcon />}
+          />
+          <BottomNavigationAction
+            label="Search"
+            value="Search"
+            icon={<SearchIcon />}
+          />
+          <BottomNavigationAction
+            label="Bingsubat"
+            value="bingsubat"
+            icon={<FavoriteIcon />}
+          />
+          <BottomNavigationAction
+            label="Minemanemo"
+            value="minemanemo"
+            icon={<StarIcon />}
+          />
+          <BottomNavigationAction
+            label="Contact"
+            value="contact"
+            icon={<ContactSupportIcon />}
+          />
+        </BottomNavigation>
+      </Paper>
     </div>
   );
 }
