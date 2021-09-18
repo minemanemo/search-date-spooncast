@@ -103,7 +103,7 @@ const Home: NextPage = () => {
     try {
       setPostLoading(true);
       const { data } = await axios.get(url);
-      return data.results.posts.map((d) => ({
+      return data.results.posts.map((d: any) => ({
         id: d.id,
         postUrl: d.postUrl,
         title: d.title,
@@ -114,13 +114,6 @@ const Home: NextPage = () => {
       setPostLoading(false);
     }
     return [];
-  };
-
-  const requestPostAPIS = async () => {
-    const bingsubat = await requestPostAPI('bingsubat');
-    const minemanemo = await requestPostAPI('minemanemo');
-
-    setBlogPost({ bingsubat, minemanemo });
   };
 
   function handleChangeKeyword(e: React.ChangeEvent<HTMLInputElement>) {
@@ -134,6 +127,13 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
+    const requestPostAPIS = async () => {
+      const bingsubat = await requestPostAPI('bingsubat');
+      const minemanemo = await requestPostAPI('minemanemo');
+
+      setBlogPost({ bingsubat, minemanemo });
+    };
+
     requestPostAPIS();
   }, []);
 
